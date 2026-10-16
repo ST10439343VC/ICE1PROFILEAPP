@@ -13,6 +13,13 @@ import {
   Keyboard,
 } from 'react-native';
 
+// Select the greeting message separately from the button interaction.
+const getGreetingMessage = (text: string): string => {
+  return text.trim()
+    ? `Your message: ${text}`
+    : 'Welcome to my profile!';
+};
+
 export default function App() {
   // Store the message entered by the user.
   const [message, setMessage] = useState('');
@@ -22,12 +29,10 @@ export default function App() {
     // Close the keyboard after pressing the button.
     Keyboard.dismiss();
 
-    // Display a greeting and the message entered by the user.
+    // Display the greeting and the selected message.
     Alert.alert(
       'Hello, Buyani!',
-      message.trim()
-        ? `Your message: ${message}`
-        : 'Welcome to my profile!'
+      getGreetingMessage(message)
     );
   };
 
